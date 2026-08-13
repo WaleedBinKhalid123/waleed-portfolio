@@ -90,6 +90,14 @@ export function Skills() {
               </Reveal>
             );
           })}
+
+          {/* An odd count leaves the last row's second cell empty. A real
+              card there would misrepresent the data, so this blends the gap
+              into the section band instead of showing the grid's own
+              (darker) background. */}
+          {skillGroups.length % 2 !== 0 ? (
+            <li aria-hidden="true" className="hidden bg-surface/40 sm:block" />
+          ) : null}
         </ul>
       </div>
     </Section>

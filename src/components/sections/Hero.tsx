@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { hero } from "@/data/hero";
 import { heroStats } from "@/lib/stats";
 import { siteConfig } from "@/data/site";
@@ -34,6 +35,14 @@ function buildFacts(): HeroFact[] {
 
   return facts;
 }
+
+/** Keyed by count so the grid never leaves an empty trailing cell. */
+const STATS_GRID_COLS: Record<number, string> = {
+  1: "grid-cols-1",
+  2: "grid-cols-2",
+  3: "grid-cols-3",
+  4: "grid-cols-2 sm:grid-cols-4",
+};
 
 export function Hero() {
   const facts = buildFacts();
@@ -141,7 +150,12 @@ export function Hero() {
           */}
           {heroStats.length > 0 ? (
             <Reveal delay={450}>
-              <dl className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-xl border bg-border sm:mt-16 sm:grid-cols-4">
+              <dl
+                className={cn(
+                  "mt-14 grid gap-px overflow-hidden rounded-xl border bg-border sm:mt-16",
+                  STATS_GRID_COLS[heroStats.length] ?? "grid-cols-2 sm:grid-cols-4",
+                )}
+              >
                 {heroStats.map((stat) => (
                   <div key={stat.id} className="bg-background px-5 py-6 sm:px-6 sm:py-7">
                     <dt className="sr-only">{stat.label}</dt>
