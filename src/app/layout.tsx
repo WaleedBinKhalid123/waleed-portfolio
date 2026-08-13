@@ -2,6 +2,7 @@ import "./globals.css";
 import { siteConfig } from "@/data/site";
 import { DEFAULT_THEME } from "@/lib/theme";
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { BackToTop } from "@/components/ui/BackToTop";
@@ -11,6 +12,7 @@ import { BootScript } from "@/components/theme/BootScript";
 import { AnchorScroll } from "@/components/layout/AnchorScroll";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { safeJsonLd, buildPersonJsonLd } from "@/lib/structuredData";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -79,6 +81,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <noscript>
           <style>{`.reveal{opacity:1 !important;transform:none !important}.rule-draw,.timeline-rail,.timeline-node{transform:none !important;opacity:1 !important}`}</style>
         </noscript>
+        {/* schema.org Person markup — lets search engines show a richer
+            result for a query naming you directly. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(buildPersonJsonLd()) }}
+        />
       </head>
       {/* suppressHydrationWarning: some browser extensions (e.g. ColorZilla)
           inject attributes like `cz-shortcut-listen` onto <body> before React
@@ -108,6 +116,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* Measured, self-correcting in-page navigation. */}
           <AnchorScroll />
         </ThemeProvider>
+
+        {/* Page views + visitor location, visible only in the Vercel
+            dashboard — a no-op until Web Analytics is enabled there. */}
+        <Analytics />
       </body>
     </html>
   );

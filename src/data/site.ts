@@ -16,8 +16,7 @@ export const siteConfig: SiteConfig = {
 
   location: "Lahore, Pakistan",
 
-  // TODO: replace with the production domain. Used for canonical + Open Graph URLs.
-  url: "https://example.com",
+  url: "https://waleed-portfolio-alpha.vercel.app",
 
   socialLinks: {
     github: "https://github.com/WaleedBinKhalid123",
