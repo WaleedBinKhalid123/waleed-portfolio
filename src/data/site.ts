@@ -16,7 +16,7 @@ export const siteConfig: SiteConfig = {
 
   location: "Lahore, Pakistan",
 
-  url: "https://waleed-portfolio-self.vercel.app",
+  url: "https://waleed-bin-khalid.vercel.app",
 
   socialLinks: {
     github: "https://github.com/WaleedBinKhalid123",
