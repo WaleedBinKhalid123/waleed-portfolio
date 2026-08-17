@@ -3,6 +3,7 @@ import { siteConfig } from "@/data/site";
 import { DEFAULT_THEME } from "@/lib/theme";
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { BackToTop } from "@/components/ui/BackToTop";
@@ -120,6 +121,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Page views + visitor location, visible only in the Vercel
             dashboard — a no-op until Web Analytics is enabled there. */}
         <Analytics />
+
+        {/* Real-user Core Web Vitals, visible only in the Vercel dashboard —
+            a no-op until Speed Insights is enabled there. */}
+        <SpeedInsights />
       </body>
     </html>
   );
