@@ -50,10 +50,10 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    id: "boredm",
-    company: "BoreDM",
+    id: "wadic",
+    company: "Wadic",
     role: "Software Engineer",
-    location: "Remote",
+    location: "College Road, Lahore, Pakistan",
     employmentType: "Full-time",
     startDate: "2023-02",
     endDate: "2023-11",
